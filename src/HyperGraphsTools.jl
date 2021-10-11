@@ -1,0 +1,3 @@
+module HyperGraphsTools
+
+end # module

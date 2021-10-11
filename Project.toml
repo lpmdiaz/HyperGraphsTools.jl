@@ -1,0 +1,4 @@
+name = "HyperGraphsTools"
+uuid = "abb64187-272c-4ae0-91a6-929f23d35fea"
+authors = ["lpmdiaz <leo-diaz@hotmail.fr>"]
+version = "0.1.0"
