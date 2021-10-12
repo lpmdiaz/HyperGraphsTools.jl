@@ -1,4 +1,7 @@
 name = "HyperGraphsTools"
 uuid = "abb64187-272c-4ae0-91a6-929f23d35fea"
-authors = ["lpmdiaz <leo-diaz@hotmail.fr>"]
+authors = ["Leo <lpdiaz@student.unimelb.edu.au>"]
 version = "0.1.0"
+
+[deps]
+HyperGraphs = "e54fe45a-379a-431d-91b1-83d23201f60f"
