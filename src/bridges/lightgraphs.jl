@@ -1,3 +1,6 @@
+module LightGraphs
+
+using HyperGraphs
 import LightGraphs as LG
 
 const AbstractSimpleGraph = LG.SimpleGraphs.AbstractSimpleGraph
@@ -26,3 +29,5 @@ function Base.convert(::Type{LG.SimpleGraph}, x::HyperGraph{T}) where {T<:Int}
     !isequal(collect(1:maximum(vertices(x))), vertices(x)) && error("non-consecutive vertices")
     LG.SimpleGraph([map((v1, v2) -> LG.Edge(v1 => v2), vertices(e)...) for e in hyperedges(x)])
 end
+
+end # module

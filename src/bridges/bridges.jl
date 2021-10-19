@@ -1,12 +1,13 @@
 module Bridges
 
+using Reexport
 using HyperGraphs
 
-include("lightgraphs.jl")
+pkgmodules = ["LightGraphs"]
 
-# exports
-if isfile(joinpath(dirname(@__FILE__), "exports.jl"))
-    include("exports.jl") # some modules don't export anything
+for pkgmodule in pkgmodules
+    include("$pkgmodule.jl")
+	eval(Meta.parse("@reexport using .$(Symbol(pkgmodule))"))
 end
 
 end # module

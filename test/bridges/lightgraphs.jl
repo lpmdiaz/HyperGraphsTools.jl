@@ -1,4 +1,4 @@
-using HyperGraphsTools.Bridges
+using HyperGraphsTools.Bridges.LightGraphs
 import LightGraphs as LG
 using HyperGraphs, SimpleTraits
 

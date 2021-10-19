@@ -1,16 +1,17 @@
 module HyperGraphsTools
 
+using Reexport
 using HyperGraphs
 
 pkgmodules = ["Bridges"]
 
 for pkgmodule in pkgmodules
-    lcpkgmodule = lowercase(pkgmodule)
-    include("$lcpkgmodule/$lcpkgmodule.jl")
-	if isfile(joinpath(dirname(@__FILE__), lcpkgmodule, "exports.jl"))
-		include("$lcpkgmodule/exports.jl") # some modules don't export anything
+	if isdir(joinpath(dirname(@__FILE__), pkgmodule))
+		include("$pkgmodule/$pkgmodule.jl") # package is in its own directory
+	else
+		include("$pkgmodule.jl") # package is at the current directory level
 	end
-	eval(Meta.parse("using .$(Symbol(pkgmodule))"))
+	eval(Meta.parse("@reexport using .$(Symbol(pkgmodule))"))
 end
 
 end # module
