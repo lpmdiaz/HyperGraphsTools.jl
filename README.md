@@ -5,7 +5,7 @@ This package will provide various extensions to the [HyperGraphs.jl](https://git
 It is designed to function as a set of modules that can be loaded independently, or as a full package that uses all the modules it defines at the same time. The former behaviour may be accessed by running `using HyperGraphsTools.ModuleName` while the latter is given by running the usual `using HyperGraphsTools`.
 
 
-Below is a description of the modules implemented.
+Below is a description of the modules implemented. Note that each submodule (i.e. subheader of the following section) is also available as a standalone module.
 
 ## Bridges
 
