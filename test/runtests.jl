@@ -1,7 +1,7 @@
 using Test
 
 const tests = [
-    "bridges/lightgraphs",
+    "bridges/graphs",
 ]
 
 for test in tests
