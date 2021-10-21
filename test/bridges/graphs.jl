@@ -1,21 +1,21 @@
-using HyperGraphsTools.Bridges.LightGraphs
-import LightGraphs as LG
+using HyperGraphsTools.Bridges.Graphs
+import Graphs as _Graphs
 using HyperGraphs, SimpleTraits
 
-const AbstractSimpleGraph = LG.SimpleGraphs.AbstractSimpleGraph
-const AbstractSimpleEdge = LG.SimpleGraphs.AbstractSimpleEdge
+const AbstractSimpleGraph = _Graphs.SimpleGraphs.AbstractSimpleGraph
+const AbstractSimpleEdge = _Graphs.SimpleGraphs.AbstractSimpleEdge
 
 # helpers that return Tuples of edge vertices for easier testing
 @traitfn make_edge_tuples(x::T::IsOriented) where {T<:AbstractHyperGraph} = [(src(e)[1], tgt(e)[1]) for e in hyperedges(x)]
 @traitfn make_edge_tuples(x::T::(!IsOriented)) where {T<:AbstractHyperGraph} = [Tuple(vx) for vx in vertices(hyperedges(x))]
-make_edge_tuples(g::T) where {T<:AbstractSimpleGraph} = [(e.src, e.dst) for e in collect(LG.edges(g))]
+make_edge_tuples(g::T) where {T<:AbstractSimpleGraph} = [(e.src, e.dst) for e in collect(_Graphs.edges(g))]
 
 # setting up some LightGraphs graphs
 n = rand(1:50)
-comp_u = LG.complete_graph(n)
-comp_d = LG.complete_digraph(n)
-path_u = LG.path_graph(n)
-path_d = LG.path_digraph(n)
+comp_u = _Graphs.complete_graph(n)
+comp_d = _Graphs.complete_digraph(n)
+path_u = _Graphs.path_graph(n)
+path_d = _Graphs.path_digraph(n)
 
 ## LightGraphs to HyperGraphs ##
 
@@ -44,11 +44,11 @@ path_d_x = convert(ChemicalHyperGraph, path_d)
 
 # example HyperGraph and its conversion to a LightGraphs.SimpleGraph
 x = HyperGraph([HyperEdge([1, 2]), HyperEdge([2, 3]), HyperEdge([3, 4])])
-g = convert(LG.SimpleGraph, x)
+g = convert(_Graphs.SimpleGraph, x)
 
 @test make_edge_tuples(x) == make_edge_tuples(g)
-@test_throws ErrorException convert(LG.SimpleGraph, HyperGraph(HyperEdge([1, 1]))) # loop
-@test_throws ErrorException convert(LG.SimpleGraph, HyperGraph([HyperEdge([1, 2]), HyperEdge([1, 2])])) # parallel edge
-@test_throws ErrorException convert(LG.SimpleGraph, HyperGraph([HyperEdge([1, 2, 3])])) # cardinality >2
-@test_throws MethodError convert(LG.SimpleGraph, HyperGraph{String}()) # type is not Int
-@test_throws ErrorException convert(LG.SimpleGraph, HyperGraph([HyperEdge([1, 2]), HyperEdge([4, 5])])) # non-consecutive vertices
+@test_throws ErrorException convert(_Graphs.SimpleGraph, HyperGraph(HyperEdge([1, 1]))) # loop
+@test_throws ErrorException convert(_Graphs.SimpleGraph, HyperGraph([HyperEdge([1, 2]), HyperEdge([1, 2])])) # parallel edge
+@test_throws ErrorException convert(_Graphs.SimpleGraph, HyperGraph([HyperEdge([1, 2, 3])])) # cardinality >2
+@test_throws MethodError convert(_Graphs.SimpleGraph, HyperGraph{String}()) # type is not Int
+@test_throws ErrorException convert(_Graphs.SimpleGraph, HyperGraph([HyperEdge([1, 2]), HyperEdge([4, 5])])) # non-consecutive vertices
