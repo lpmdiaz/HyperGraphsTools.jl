@@ -6,7 +6,7 @@ import Graphs as _Graphs
 const AbstractSimpleGraph = _Graphs.SimpleGraphs.AbstractSimpleGraph
 const AbstractSimpleEdge = _Graphs.SimpleGraphs.AbstractSimpleEdge
 
-## LightGraphs to HyperGraphs ##
+## Graphs to HyperGraphs ##
 
 function Base.convert(::Type{T}, g::U) where {T<:AbstractHyperGraph, U<:AbstractSimpleGraph}
     ex = collect(_Graphs.edges(g))
@@ -20,9 +20,9 @@ function Base.convert(::Type{T}, g::U) where {T<:AbstractHyperGraph, U<:Abstract
     end
 end
 
-## HyperGraphs to LightGraphs ##
+## HyperGraphs to Graphs ##
 
-# convert a HyperGraph to a LightGraphs.SimpleGraph
+# convert a HyperGraph to a Graphs.SimpleGraph
 function Base.convert(::Type{_Graphs.SimpleGraph}, x::HyperGraph{T}) where {T<:Int}
     !issimple(x) && error("hypergraph is not simple")
     !isgraph(x) && error("some cardinalities != 2")

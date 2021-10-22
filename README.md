@@ -9,15 +9,15 @@ Below is a description of the modules implemented. Note that each submodule (i.e
 
 ## Bridges
 
-### LightGraphs
+### Graphs
 
-Extensions of `Base.convert` are implemented to easily bridge LightGraphs.jl and HyperGraphs.jl.
+Extensions of `Base.convert` are implemented to easily bridge [Graphs.jl](https://github.com/JuliaGraphs/Graphs.jl) and HyperGraphs.jl.
 
-In the LightGraphs.jl to HyperGraphs.jl direction, any LightGraphs.jl type can be converted to the appropriate HyperGraphs.jl type (given matching orientation e.g. a directed LightGraphs.jl type must be converted to an oriented hypergraph).
+In the Graphs.jl to HyperGraphs.jl direction, any Graphs.jl type can be converted to the appropriate HyperGraphs.jl type (given matching orientation e.g. a directed Graphs.jl type must be converted to an oriented hypergraph).
 
-In the HyperGraphs.jl to LightGraphs.jl direction, only the conversion from a HyperGraph to a SimpleGraph is currently supported; this is because information would be lost by any other conversion at this point (more conversions can be written once more hypergraph types are implemented in HyperGraphs.jl).
+In the HyperGraphs.jl to Graphs.jl direction, only the conversion from a HyperGraph to a SimpleGraph is currently supported; this is because information would be lost by any other conversion at this point (more conversions can be written once more hypergraph types are implemented in HyperGraphs.jl).
 
 #### Notes
 
-- All edges in LightGraphs.jl have an `src` and a `dst` field, implying a direction. This means that conversion at the edge level is not possible because there is no way to know if that edge is in a directed or undirected graph.
-- Only `HyperGraph`s of type `Int` can be passed over to LightGraphs.jl since only integer vertices are allowed. The vertices of the input `HyperGraph` must also be consecutive.
+- All edges in Graphs.jl have an `src` and a `dst` field, implying a direction. This means that conversion at the edge level is not possible because there is no way to know if that edge is in a directed or undirected graph.
+- Only `HyperGraph`s of type `Int` can be passed over to Graphs.jl since only integer vertices are allowed. The vertices of the input `HyperGraph` must also be consecutive.
