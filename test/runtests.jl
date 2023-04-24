@@ -1,7 +1,8 @@
 using Test
 
 const tests = [
-    "bridges/graphs",
+    "bridges/catalyst",
+    "bridges/graphs"
 ]
 
 for test in tests

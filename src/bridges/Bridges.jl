@@ -3,7 +3,7 @@ module Bridges
 using Reexport
 using HyperGraphs
 
-pkgmodules = ["Graphs"]
+pkgmodules = ["Catalyst", "Graphs"]
 
 for pkgmodule in pkgmodules
     include("$pkgmodule.jl")

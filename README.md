@@ -9,6 +9,22 @@ Below is a description of the modules implemented. Note that each submodule (i.e
 
 ## Bridges
 
+### Catalyst
+
+A bridge between HyperGraphs.jl and [Catalyst.jl](https://github.com/SciML/Catalyst.jl) is implemented through connections between the `ChemicalHyperEdge` and `Reaction` types, and the `ChemicalHyperGraph` and `ReactionSystem` types. This is done in each case by extending the relevant constructor to the relevant type, meaning for intance that running `ChemicalHyperEdge(r)` will return a `ChemicalHyperEdge` when `r` is a `Reaction`. Note that in the Catalyst.jl to HyperGraphs.jl direction some information is lost at the `ReactionSystem` level (the model name, for instance).
+
+Note that this bridge extends to other packages through the connection between Catalyst.jl and ModelingToolkit.jl. This for instance includes [SBMLToolit.jl](https://github.com/SciML/SBMLToolkit.jl), as illustrated below.
+
+```julia
+using HyperGraphs
+using HyperGraphsTools.Bridges.Catalyst
+using SBMLToolkit
+
+rsys = readSBML(sbmlfile, ReactionSystemImporter())
+ChemicalHyperGraph(rsys)
+```
+
+
 ### Graphs
 
 Extensions of `Base.convert` are implemented to easily bridge [Graphs.jl](https://github.com/JuliaGraphs/Graphs.jl) and HyperGraphs.jl.
